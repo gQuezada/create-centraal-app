@@ -39,6 +39,7 @@ export { <Name> };
 `;
 
 let gitignoreClass=`
+/lib/
 # Logs
 logs
 *.log
