@@ -4,7 +4,8 @@
   "description": "Create a centraal academy aplication",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/babel src -d lib"
   },
   "bin": {
     "most": "bin/create-centraal-app"
@@ -18,5 +19,12 @@
   "bugs": {
     "url": "https://github.com/gQuezada/create-centraal-app/issues"
   },
-  "homepage": "https://github.com/gQuezada/create-centraal-app#readme"
+  "homepage": "https://github.com/gQuezada/create-centraal-app#readme",
+  "dependencies": {
+    "commander": "^2.15.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
+  }
 }
