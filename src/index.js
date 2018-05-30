@@ -1,14 +1,20 @@
 #!/usr/bin/env node
 
-import * as fs from 'fs';
-import * as commander from 'commander';
-import {init} from 'init';
+const commander = require( 'commander');
+import { init, generate } from './init';
 
 commander
-.command('create-centraal-app <projectName>')
+.command('new <projectName>')
 .description('Create a simple structure folder')
 .action((projectName) => {
     init(projectName);
+});
+
+commander
+.command('generate <moduleName>')
+.description('Create a new module')
+.action((moduleName) => {
+    generate(moduleName);
 });
 
 commander.parse(process.argv);

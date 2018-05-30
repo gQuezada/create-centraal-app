@@ -1,40 +1,42 @@
+import * as fs from 'fs';
+
 const init = (projectName)=>{
     try {
-        fs.mkdirSync('./app');
+        fs.mkdirSync(`./${projectName}/`);
     }
     catch(error) {
-        console.error('Error al crear ./app');
+        console.error(`Error al crear./${projectName}`);
     }
     
     try {
-        fs.mkdirSync('./app/src/');
+        fs.mkdirSync(`./${projectName}/src/`);
     }
     catch(error) {
-        console.error('Error al crear ./app/src/');
+        console.error(`Error al crear ./${projectName}/src/`);
     }
     try {
-        fs.mkdirSync('./app/src/app');
+        fs.mkdirSync(`./${projectName}/src/${projectName}`);
     }
     catch(error) {
-        console.error('Error al crear ./app/src/app');
+        console.error(`Error al crear ./${projectName}/src/${projectName}`);
     }
     try {
-        fs.mkdirSync('./app/lib/');
+        fs.mkdirSync(`./${projectName}/lib/`);
     }
     catch(error) {
-        console.error('Error al crear ./app/lib/');
+        console.error(`Error al crear ./${projectName}/lib/`);
     }
     
     let structureClass = `
-    import { <Name> } from '<name>'
+    import { ${projectName} } from '${projectName}'
     
-    class <Name> {
+    class ${projectName} {
         constructor(){
     
         }
     }
     
-    export { <Name> };
+    export { ${projectName} };
     `;
     
     let gitignoreClass=`
@@ -103,18 +105,47 @@ const init = (projectName)=>{
     `;
     
     try {
-        fs.writeFileSync('./app/src/app/app.js', structureClass);
+        fs.writeFileSync(`./${projectName}/src/${projectName}/${projectName}.js`, structureClass);
     }
     catch(error) {
         console.error('Error al crear modulo');
     }
     
     try {
-        fs.writeFileSync('./app/.gitignore', gitignoreClass);
+        fs.writeFileSync(`./${projectName}/.gitignore`, gitignoreClass);
     }
     catch(error) {
         console.error('Error', error);
     }
 };
 
-export default init;
+const generate = (moduleName)=>{
+    
+    try {
+        fs.mkdirSync(`./src/${moduleName}`);
+    }
+    catch(error) {
+        console.error(`Error al crear ./src/${moduleName}`);
+    }
+    
+    let structureClass = `
+    import { ${moduleName} } from '${moduleName}'
+    
+    class ${moduleName} {
+        constructor(){
+    
+        }
+    }
+    
+    export { ${moduleName} };
+    `;
+    
+    try {
+        fs.writeFileSync(`./src/${moduleName}/${moduleName}.js`, structureClass);
+    }
+    catch(error) {
+        console.error('Error al crear modulo');
+    }
+};
+
+export {init, generate};
